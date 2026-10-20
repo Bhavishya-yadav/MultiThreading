@@ -48,6 +48,7 @@ public class ThreadLocalThreadPool {
         // SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat df = ThreadSafeFormatter.dateFormatter.get(); 
         return df.format(date);
+
     }
 }
 
