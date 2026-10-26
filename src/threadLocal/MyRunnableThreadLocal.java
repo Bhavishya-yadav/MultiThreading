@@ -50,10 +50,12 @@ class Driver implements Runnable{
 }
 public class MyRunnableThreadLocal {
     public static void main(String[] args) {
+        System.out.println(Runtime.getRuntime().availableProcessors());
         ExecutorService executorService = Executors.newFixedThreadPool(1);
+        
         Runnable task = new Driver();
         for(int i=0;i<10;i++){
-            executorService.submit(task);
+            executorService.execute(task); // executorService.submit(task);
         }
         executorService.shutdown();
     }
