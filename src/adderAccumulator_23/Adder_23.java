@@ -7,9 +7,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.LongAdder;
 
-class Task implements Runnable{
+class AdderTask implements Runnable{
     LongAdder  longAdder;
-    Task(LongAdder longAdder) {
+    AdderTask(LongAdder longAdder) {
         this.longAdder = longAdder;
     }
 
@@ -18,14 +18,14 @@ class Task implements Runnable{
         longAdder.increment();
     }
 }
-public class Adder_21 {
+public class Adder_23 {
     public static void main(String[] args) throws InterruptedException {
 //        ExecutorService executorService = Executors.newFixedThreadPool(16);
         LongAdder  longAdder = new LongAdder();
         List<CompletableFuture<Void>> futureList = new ArrayList<>();
         for(int i=0;i<100;i++){
-//            executorService.submit(new Task(longAdder));
-            CompletableFuture<Void> future = CompletableFuture.runAsync(new Task(longAdder));
+//            executorService.submit(new AdderTask(longAdder));
+            CompletableFuture<Void> future = CompletableFuture.runAsync(new AdderTask(longAdder));
             futureList.add(future);
         }
         CompletableFuture<Void> newFuture = CompletableFuture.allOf(futureList.toArray(new CompletableFuture[0]));
